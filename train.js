@@ -1,1 +1,1 @@
-console.log('train is running')
+console.log('TRAIN AREA!')
