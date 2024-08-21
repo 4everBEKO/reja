@@ -1,4 +1,22 @@
-// TASK-A
+// TASK-B
+function countDigits(str) {
+    if(typeof str !== 'string') {
+        return 'Error: Please enter a string'
+    }
+
+    let count = 0
+    for(let i = 0; i < str.length; i++) {
+        let asciiValue = str.charCodeAt(i)
+        if(asciiValue > 47 && asciiValue < 59) {
+            count++ 
+        }
+    }
+    return count
+}
+
+console.log(countDigits('ad2a54y79wet0sfgb9')) // 7
+
+/* TASK-A
 function harfniTop(harf, soz) {
     harf = harf.toLowerCase()
     soz = soz.toLowerCase()
@@ -14,6 +32,7 @@ function harfniTop(harf, soz) {
 }
 
 console.log(harfniTop("e", "engineer"))
+*/
 
 
 
