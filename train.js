@@ -1,34 +1,100 @@
-// TASK-B
-function countDigits(str) {
-    if(typeof str !== 'string') {
-        return 'Error: Please enter a string'
+// TASK-C
+const moment = require('moment')
+class Shop {
+    constructor(non, lagmon, cola) {
+        this.non = non
+        this.lagmon = lagmon
+        this.cola = cola
     }
-
-    let count = 0
-    for(let i = 0; i < str.length; i++) {
-        let asciiValue = str.charCodeAt(i)
-        if(asciiValue > 47 && asciiValue < 59) {
-            count++ 
+    
+    residual() {
+        return `Hozir ${moment().format('HH:mm')} da  ${this.non}ta non, ${this.lagmon}ta lagmon, ${this.cola}ta cola mavjud! `
+    }
+    
+    sell(productName, number) {
+        if(productName === 'non') {
+            if(this.non === 0) {
+                return `Bizda non qolmadi!`
+            }else if(number <= this.non) {
+                this.non -= number
+                return `Siz ${number}ta non sotib oldiz.`
+            } else {
+                return `Bizda ${this.non}ta non mavjud!`
+            }
+        } else if(productName === 'lagmon') {
+            if(this.lagmon === 0) {
+                return `Bizda lagmon qolmadi!`
+            }else if(number <= this.lagmon) {
+                this.lagmon -= number
+                return `Siz ${number}ta lagmon sotib oldiz.`
+            } else {
+                return `Bizda ${this.lagmon}ta lagmon mavjud!`
+            }
+        } else if(productName === 'cola') {
+            if(this.cola === 0) {
+                return `Bizda cola qolmadi!`
+            }else if(number <= this.cola) {
+                this.cola -= number
+                return `Siz ${number}ta cola sotib oldiz.`
+            } else {
+                return `Bizda ${this.cola}ta cola mavjud!`
+            }
+        } else {
+            return `Bizda bunday mahsulot yoq! Bizda non, lagmon, cola bor.`
         }
     }
-    return count
+    
+    acceptance(productName, number) {
+        if(productName === 'non') {
+            this.non += number
+            return `Siz ${number}ta non qo'shdiz!`
+        } else if(productName === 'lagmon') {
+            this.lagmon += number
+            return `Siz ${number}ta lagmon qo'shdiz!`
+        } else if(productName === 'cola') {
+            this.cola += number
+            return `Siz ${number}ta cola qo'shdiz!`
+        } else {
+            return `Biz bunday mahsulot olmaymiz!`
+        }
+    }
 }
 
-console.log(countDigits('ad2a54y79wet0sfgb9')) // 7
+let shop = new Shop(10, 5, 8)
+console.log(shop.residual())
+
+/* TASK-B
+function countDigits(str) {
+if(typeof str !== 'string') {
+return 'Error: Please enter a string'
+}
+
+let count = 0
+for(let i = 0; i < str.length; i++) {
+let asciiValue = str.charCodeAt(i)
+if(asciiValue > 47 && asciiValue < 59) {
+count++ 
+}
+}
+return count
+}
+
+console.log(countDigits('ad2a54y79wet0sfgb9')) 
+*/
 
 /* TASK-A
 function harfniTop(harf, soz) {
-    harf = harf.toLowerCase()
-    soz = soz.toLowerCase()
-    
-    let count = 0
-    for (let i = 0; i < soz.length; i++) {
-        if (soz[i] === harf) {
-            count++
-        }
-    }
+harf = harf.toLowerCase()
+soz = soz.toLowerCase()
 
-    return count
+let count = 0
+for (let i = 0; i < soz.length; i++) {
+if (soz[i] === harf) {
+count++
+}
+}
+
+return count
 }
 
 console.log(harfniTop("e", "engineer"))
@@ -58,14 +124,14 @@ console.log(harfniTop("e", "engineer"))
 //     else if(a > 50 && a <= 60) callback(null, list[4])
 //     else {
 //         setInterval(() => {
-//             callback(null, list[5])
+    //             callback(null, list[5])
 //         }, 1000);
 //     }
 // }
 
 // console.log('passed here 0')
 // maslahatBering(70, (err, data) => {
-//     if(err) console.log("ERROR:", err)
+    //     if(err) console.log("ERROR:", err)
 //     console.log("Answer:", data)
 // })
 // console.log('passed here 1')
@@ -82,8 +148,8 @@ console.log(harfniTop("e", "engineer"))
 //     else if(a > 50 && a <= 60) return list[4]
 //     else {
 //         return new Promise((resolve, reject) => {
-//             setTimeout(() => {
-//                 resolve(list[5])
+    //             setTimeout(() => {
+        //                 resolve(list[5])
 //             }, 5000);
 //         })
 //     }
@@ -93,10 +159,10 @@ console.log(harfniTop("e", "engineer"))
 // console.log("passed here 0")
 // maslahatBering(25)
 // .then((data) => {
-//     console.log("Answer:", data)
+    //     console.log("Answer:", data)
 // })
 // .catch((err) => {
-//     console.log("ERROR:", err)
+    //     console.log("ERROR:", err)
 // })
 // console.log("passed here 1")
 
