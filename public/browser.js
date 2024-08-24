@@ -1,4 +1,4 @@
-console.log('Frontend JS ishga tushdi!')
+console.log("Frontend JS ishga tushdi!");
 
 function itemTemplate(item) {
     return `
@@ -13,19 +13,76 @@ function itemTemplate(item) {
                 </button>
             </div>
         </li>
-    `
+    `;
 }
 
-let createField = document.getElementById('create-field')
+let createField = document.getElementById("create-field");
 
-document.getElementById('create-form').addEventListener('submit', e => {
-    e.preventDefault()
-    
-    axios.post("/create-item", { reja: createField.value }).then((response) => {
-        document.getElementById('item-list').insertAdjacentHTML('beforeend', itemTemplate(response.data))
-        createField.value = ''
-        createField.focus()
+document.getElementById("create-form").addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    axios
+        .post("/create-item", { reja: createField.value })
+        .then((response) => {
+            document
+                .getElementById("item-list")
+                .insertAdjacentHTML("beforeend", itemTemplate(response.data));
+            createField.value = "";
+            createField.focus();
+        })
+        .catch((err) => {
+            alert("Please try again!");
+        });
+});
+
+document.addEventListener("click", (e) => {
+    // delete operation
+    console.log(e.target);
+    if (e.target.classList.contains("delete-me")) {
+        if (confirm("Are you sure you want to delete it?")) {
+            axios
+                .post("/delete-item", { id: e.target.getAttribute("data-id") })
+                .then((response) => {
+                    console.log(response.data);
+                    e.target.parentElement.parentElement.remove();
+                })
+                .catch((err) => {
+                    alert("Please try again!");
+                });
+        }
+    }
+
+    // edit operation
+    if (e.target.classList.contains("edit-me")) {
+        let userInput = prompt(
+            "Make a change",
+            e.target.parentElement.parentElement.querySelector(".item-text")
+                .innerHTML
+        );
+        if (userInput) {
+            axios
+                .post("/edit-item", {
+                    id: e.target.getAttribute("data-id"),
+                    new_input: userInput,
+                })
+                .then((response) => {
+                    console.log(response);
+                    e.target.parentElement.parentElement.querySelector(
+                        ".item-text"
+                    ).innerHTML = userInput;
+                })
+                .catch((err) => {
+                    alert("Please try again!");
+                });
+        }
+    }
+})
+
+document.getElementById('clear-all').addEventListener('click', () => {
+    axios.post('/delete-all', {delete_all: true}).then((response) => {
+        alert(response.data.state)
+        document.location.reload()
     }).catch((err) => {
-        alert("Iltimos qaytadan urinib ko'ring!")
+        alert("Please try again!");
     });
 })
