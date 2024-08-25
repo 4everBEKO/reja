@@ -1,4 +1,17 @@
-// TASK-C
+// TASK-D
+function checkContent(str1, str2) {
+    let arr1 = str1.split('').sort().join('')
+    let arr2 = str2.split('').sort().join('')
+
+    if(arr1 === arr2) {
+        return true
+    }
+    return false
+}
+
+console.log(checkContent('mitgroup', 'gmtiprou'))
+
+/* TASK-C
 const moment = require('moment')
 class Shop {
     constructor(non, lagmon, cola) {
@@ -62,6 +75,7 @@ class Shop {
 
 let shop = new Shop(10, 5, 8)
 console.log(shop.residual())
+*/
 
 /* TASK-B
 function countDigits(str) {
