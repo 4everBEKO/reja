@@ -19,6 +19,7 @@ function itemTemplate(item) {
 let createField = document.getElementById("create-field");
 
 document.getElementById("create-form").addEventListener("submit", (e) => {
+    // Traditional API ni to'xtatyabdi!!
     e.preventDefault();
 
     axios
