@@ -1,4 +1,15 @@
-// TASK-D
+// TASK-E
+function getReverse(str) {
+    let reversed = ''
+    for(let i = str.length - 1; i >= 0; i--) {
+        reversed += str[i]
+    }
+    return reversed
+}
+
+console.log(getReverse('salom'))
+
+/* TASK-D
 function checkContent(str1, str2) {
     let arr1 = str1.split('').sort().join('')
     let arr2 = str2.split('').sort().join('')
@@ -10,6 +21,7 @@ function checkContent(str1, str2) {
 }
 
 console.log(checkContent('mitgroup', 'gmtiprou'))
+*/
 
 /* TASK-C
 const moment = require('moment')
