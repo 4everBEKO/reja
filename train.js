@@ -1,4 +1,18 @@
-// TASK-E
+// TASK-F
+function findDoublersLetter(str) {
+    for(let i = 0; i < str.length; i++) {
+        for(let j = i + 1; j < str.length; j++) {
+            if(str[i] === str[j]) {
+                return true
+            }
+        }
+    }
+    return false
+}
+
+console.log(findDoublersLetter('mitgroup'))
+
+/* TASK-E
 function getReverse(str) {
     let reversed = ''
     for(let i = str.length - 1; i >= 0; i--) {
@@ -8,6 +22,7 @@ function getReverse(str) {
 }
 
 console.log(getReverse('salom'))
+*/
 
 /* TASK-D
 function checkContent(str1, str2) {
